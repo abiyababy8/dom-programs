@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h3>MEARN</h3>
+    <h3>JAVASCRIPT</h3>
+    <h5 id="sub_heading">COURSES</h5>
+    <ul>
+        <li class="topics">MONGO</li>
+        <li class="topics">EXPRESS</li>
+        <li class="topics">ANGULAR</li>
+        <li class="topics">REACT</li>
+        <li class="topics">NODE</li>
+    </ul>
+    <ol>
+        <li class="fruits">Apple</li>
+        <li class="fruits">Orange</li>
+        <li class="fruits">Papaya</li>
+    </ol>
+    <script>
+        //1 by tag
+        var temp1=document.querySelector('h3')
+        console.log(temp1)
+        temp1.style.color='orange'
+        //2 by id
+        var temp2=document.querySelector('#sub_heading')
+        console.log(temp2)
+        temp2.style.color='red'
+        //3 by class
+        var temp3=document.querySelector('.topics')
+        console.log(temp3)
+        temp3.style.color='green'
+        //querySelectorAll
+        var temp4=document.querySelectorAll('.fruits')
+        console.log(temp4)
+        temp4.forEach((item)=>{
+            item.style.color='brown'
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="main_div">
+        <h3 class="heading">MEARN</h3>
+        <ul>
+            <li class="topics">MONGO</li>
+            <li class="topics">EXPRESS</li>
+            <li class="topics">ANGULAR</li>
+            <li class="topics">REACT</li>
+            <li class="topics">NODE</li>
+        </ul>
+    </div>
+    <script>
+        var mainClass = document.getElementsByClassName('main_div')
+        var mainClassArray = Array.from(mainClass)
+        console.log(mainClassArray)
+        mainClassArray[0].style.marginTop = '200px'
+        mainClassArray[0].style.marginLeft = '200px'
+
+        var liClasses = document.getElementsByClassName('topics')
+        var liClassesArray = Array.from(liClasses)
+        console.log(liClassesArray)
+        liClassesArray.map((item)=> {
+            item.style.color = 'red';
+            item.style.fontSize = '15px';
+        });
+
+        // Array.from(document.getElementsByClassName('heading')).map(item=>item.style.color='green')
+        Array.from(document.getElementsByClassName('heading'))[0].style.color = 'blue'
+    </script>
+</body>
+
+</html>

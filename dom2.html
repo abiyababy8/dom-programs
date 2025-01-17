@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>Change Color</h1>
+    <h3>MEARN</h3>
+    <h5>MongoDB</h5>
+    <h5>Angular</h5>
+    <ol>
+        <li>map</li>
+        <li>filter</li>
+        <li>reduce</li>
+        <li>foreach</li>
+    </ol>
+    <script>
+        var tags = document.getElementsByTagName('h5');
+        console.log(tags);
+        //convert to array
+        var tagsArray = Array.from(tags)
+        console.log(tagsArray)
+        //[h5,h5]
+        tagsArray[0].style.color = 'red'
+        tagsArray[1].style.color = 'green'
+        tagsArray[0].style.fontSize='50px'
+        var liTags = document.getElementsByTagName('li');
+        console.log(liTags)
+        Array.from(liTags).map(item=>item.style.color='orange')
+        // var liTagsArray=Array.from(liTags)
+        // for(let i=0;i<liTagsArray.length;i++){
+        //     liTagsArray[i].style.color='blue'
+        // }
+
+    </script>
+</body>
+
+</html>
