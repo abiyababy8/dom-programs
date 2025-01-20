@@ -21,12 +21,13 @@
                 <form class="border border-primary mt-5 p-3 rounded">
                     <div class="mb-3">
                         <label for="userAge" class="form-label">Enter Age</label>
-                        <input type="" class="form-control" id="userAge" aria-describedby="emailHelp">
+                        <input type="" class="form-control" id="userAge" oninput="checkValue()" aria-describedby="emailHelp">
                     </div>
 
                     <button type="button" class="btn btn-primary" onclick="checkEligibility()">CHECK
                         ELIGIBILITY</button>
                 </form>
+                <!-- html element to print message -->
                 <p id="response_msg"></p>
 
             </div>
@@ -34,11 +35,20 @@
         </div>
     </div>
     <script>
+        function checkValue(){
+            var res = document.getElementById('response_msg')
+            res.innerHTML = ""
+        }
         function checkEligibility() {
             // alert('hai')
             const age = userAge.value
             var res = document.getElementById('response_msg')
-        
+        if(!age){
+            res.innerHTML = "Please enter the age"
+            res.style.color='orange'
+            // alert("Please enter the age!!!")
+        }
+        else{
             if (age >= 18) {
                 res.innerHTML = 'Eligible for voting'
                 res.style.color='green'
@@ -47,6 +57,7 @@
                 res.innerHTML = 'Not eligible for voting'
                 res.style.color='red'
             }
+        }
 
         }
     </script>
