@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container {
+            height: 200px;
+            width: 200px;
+            border: 2px solid red
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container" id="main_container1" onmouseover="changeBackground()" onmouseleave="removeBackground()">
+    </div>
+    <script>
+        function changeBackground() {
+            document.getElementById('main_container1').style.backgroundColor = 'yellow'
+        }
+        function removeBackground() {
+            document.getElementById('main_container1').style.backgroundColor = 'white'
+        }
+    </script>
+</body>
+
+</html>
