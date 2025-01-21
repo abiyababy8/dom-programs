@@ -25,7 +25,7 @@
                         <label for="num2" class="form-label">Second Number</label>
                         <input type="number" class="form-control" id="num2">
                     </div>
-                    <button type="button" class="btn btn-primary" onclick="add()">Add</button>
+                    <button type="button" class="btn btn-primary" onclick="addNumbers()">Add</button>
                     <button type="button" class="btn btn-primary" onclick="clearFields()">Clear</button>
                 </form>
                 <h4 id="res" class="text-success">Result:</h4>
@@ -34,7 +34,7 @@
         </div>
     </div>
     <script>
-        function add() {
+        function addNumbers() {
             n1Element = document.getElementById('num1')
             n2Element = document.getElementById('num2')
             n1 = n1Element.value
@@ -45,7 +45,7 @@
             else {
                 res = document.getElementById('res')
                 //n1 and n2 are returned as strings so it is converted to number
-                res.innerHTML ="Result: "+ (parseInt(n1) + parseInt(n2))
+                res.innerHTML = "Result: " + (parseInt(n1) + parseInt(n2))
                 // res.innerHTML = Number(n1) + Number(n2)
             }
         }
@@ -59,4 +59,5 @@
         }
     </script>
 </body>
+
 </html>
