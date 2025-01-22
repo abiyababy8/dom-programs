@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button onclick="addToSS()">ADD TO SESSION STORAGE</button>
+    <br><br>
+    <button onclick="getName()">GET FROM SS</button>
+    <br><br>
+    <button onclick="clearSS()">CLEAR SESSION STORAGE</button>
+    <br><br>
+    <button onclick="storeObj()">STORE OBJECT</button>
+    <br><br>
+    <button onclick="getObject()">GET OBJECT</button>
+    <script>
+function addToSS() {
+            var email = 'abiya@gmail.com';
+            sessionStorage.setItem("userEmail", email);
+        }
+        function getName() {
+            var email = sessionStorage.getItem("userEmail");
+            alert(email);
+        }
+        function clearSS() {
+            sessionStorage.removeItem("userEmail");
+        }
+        function storeObj(){
+            var studentData={
+                firstName:"Sean",
+                lastName:"Samuel",
+                age:22,
+                location:"Kochi"
+            }
+            sessionStorage.setItem("studentData",JSON.stringify(studentData))
+        }
+        function getObject(){
+            temp=sessionStorage.getItem("studentData")
+            tempNew=JSON.parse(temp)
+            console.log(tempNew.firstName)
+        }
+    </script>
+</body>
+</html>
