@@ -28,13 +28,13 @@ function addToSS() {
             sessionStorage.removeItem("userEmail");
         }
         function storeObj(){
-            var studentData={
+            var studentDetails={
                 firstName:"Sean",
                 lastName:"Samuel",
                 age:22,
                 location:"Kochi"
             }
-            sessionStorage.setItem("studentData",JSON.stringify(studentData))
+            sessionStorage.setItem("studentData",JSON.stringify(studentDetails))
         }
         function getObject(){
             temp=sessionStorage.getItem("studentData")
