@@ -20,7 +20,7 @@
             <div class="col-md-6">
                 <h3 class="text-primary mt-5 text-center">TO-DO LIST</h3>
                 <form action="" class="mt-5 d-flex">
-                    <input type="text" placeholder="Add To-do item" class="form-control">
+                    <input type="text" placeholder="Add To-do item" class="form-control" id="todo_data">
                     <button type="button" class="btn btn-success ms-3" onclick="additem()">Add TODO</button>
                 </form>
             </div>
@@ -37,8 +37,15 @@
         </div>
     </div>
     <script>
-        function additem(){
-            
+        function additem() {
+            if (todo_data.value) {
+                var todoItem = todo_data.value;
+                todolists.innerHTML = todolists.innerHTML + `<li> ${todoItem} </li>`;
+                todo_data.value = "";
+            }
+            else {
+                alert("Please Add Something!");
+            }
         }
     </script>
 </body>
