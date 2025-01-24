@@ -22,4 +22,10 @@ class UserManagement {
     getData() {
         this.dataBase = JSON.parse(localStorage.getItem("userData"));
     }
+    login(){
+        this.getData()
+    }
+    register(){
+        this.getData()
+    }
 }
