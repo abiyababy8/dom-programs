@@ -24,6 +24,7 @@ class UserManagement {
     }
     login() {
         this.getData()
+        alert("Haii")
     }
     register() {
         let uname = userName.value
@@ -39,6 +40,7 @@ class UserManagement {
                 this.dataBase[uname] = { username: uname, email: uemail, password: upassword }
                 this.saveData();
                 alert(`${uname} successfully registered!`)
+                window.location="login.html"
             }
         }
         else {
