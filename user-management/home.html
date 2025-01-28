@@ -1,11 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home</title>
+    
 </head>
+
 <body>
     WELCOME HOME
+    <h4 id="user"></h4>
+    <button class="btn btn-primary" onclick="logout()">Log Out</button>
+    <script>
+        if (localStorage.getItem("loggedUserName")) {
+            var uname = localStorage.getItem("loggedUserName");
+            user.innerHTML = uname;
+        }
+function logout(){
+    localStorage.removeItem("loggedUserName");
+    window.location="login.html";
+}
+    </script>
 </body>
+
 </html>

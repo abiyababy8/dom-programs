@@ -24,7 +24,26 @@ class UserManagement {
     }
     login() {
         this.getData()
-        alert("Haii")
+        var loggedpwd = userPassword.value;
+        var loggedname = userName.value;
+        if (loggedname !== '' && loggedpwd !== '') {
+            //check whether user already exists in the db
+            if (loggedname in this.dataBase) {
+                if (this.dataBase[loggedname].password === loggedpwd) {
+                    localStorage.setItem("loggedUserName", loggedname)
+                    window.location = "home.html"
+                }
+                else {
+                    alert("Password not matching")
+                }
+            }
+            else {
+                alert(`${loggedname} not present in database`)
+            }
+        }
+        else {
+            alert("Please fill the form completely!")
+        }
     }
     register() {
         let uname = userName.value
@@ -40,7 +59,7 @@ class UserManagement {
                 this.dataBase[uname] = { username: uname, email: uemail, password: upassword }
                 this.saveData();
                 alert(`${uname} successfully registered!`)
-                window.location="login.html"
+                window.location = "login.html"
             }
         }
         else {
