@@ -19,6 +19,11 @@ class UserManagement {
     saveData() {
         localStorage.setItem("userData", JSON.stringify(this.dataBase));
     }
+    saveDataInitial(){
+        if(!localStorage.getItem("userData")){
+            localStorage.setItem("userData", JSON.stringify(this.dataBase));
+        }
+    }
     getData() {
         this.dataBase = JSON.parse(localStorage.getItem("userData"));
     }
@@ -68,4 +73,4 @@ class UserManagement {
     }
 }
 const obj = new UserManagement();
-obj.saveData();
+obj.saveDataInitial();
