@@ -11,8 +11,9 @@ nav a{
     margin-left: -1rem;
 }
 footer{
-    background-color: grey;
     margin-top: 80px;
     height: 30px;
 }
-
+footer p{
+    color: grey;
+}
