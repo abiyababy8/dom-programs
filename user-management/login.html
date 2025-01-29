@@ -32,7 +32,7 @@
                         <h6 text-center mt-3>Not Registered Yet? <a href="register.html"><span class="text-primary ms-2">Sign Up</span></a></h6>
                         <div class="d-flex justify-content-evenly mt-3">
                             <button type="button" class="btn btn-primary" onclick="obj.login()">LOGIN</button>
-                            <button type="button" class="btn btn-warning">RESET</button>
+                            <button type="button" class="btn btn-warning" onclick="clearfields()">RESET</button>
                         </div>
                       </form>
                 </div>
@@ -40,5 +40,11 @@
             </div>
         </div>
         <script src="./common.js"></script>
-</body>
+        <script>
+            function clearfields(){
+                userName.value=""
+                userPassword.value=""
+            }
+        </script>
+    </body>
 </html>
