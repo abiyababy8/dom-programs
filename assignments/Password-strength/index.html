@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Password Strength Checker</title>
+    <link rel="shortcut icon" href="./icon.png" type="image/x-icon">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3"></div>
+            <div class="col-md-6 mt-5">
+                <h4 class="text-center text-primary mt-3 mb-3">CHECK PASSWORD STRENGTH</h4>
+                <div
+                    class="content d-flex flex-column justify-content-center align-items-center border border-1 border-dark p-3">
+                    <input type="text" placeholder="Enter your password here" class="form-controls mb-2 w-20 p-2"
+                        id="passwordField" oninput="checkValue()">
+                    <div class="buttons d-flex justify-content-center gap-3">
+                        <button type="button" onclick="clearField()" class="btn btn-primary w-10 ">Clear</button>
+                    </div>
+                    <p id="strength" class="mt-2"></p>
+                </div>
+            </div>
+            <div class="col-md-3"></div>
+        </div>
+    </div>
+    <script>
+        function checkValue(){
+            password = passwordField.value
+            if (password.length >= 8 &&
+                /[A-Z]/.test(password) &&   // At least one uppercase letter
+                /[a-z]/.test(password) &&   // At least one lowercase letter
+                /\d/.test(password) &&      // At least one number
+                /[\W_]/.test(password)) {   // At least one special character
+                strength.innerHTML = "Strength: Strong"
+                strength.style.color = "green"
+            } else if (password.length >= 6) {
+                strength.innerHTML = "Strength: Medium"
+                strength.style.color = "orange"
+            } else {
+                strength.innerHTML = "Strength: Weak"
+                strength.style.color = "red"
+            }
+        }
+        function clearField() {
+            passwordField.value = ""
+            strength.innerHTML = ""
+        }
+    </script>
+</body>
+
+</html>
