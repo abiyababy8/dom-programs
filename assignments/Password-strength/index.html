@@ -11,7 +11,7 @@
     <style>
         body {
             background-image: url(./background.jpg);
-            background-repeat: no-repeat;
+            background-repeat: repeat-y;
             background-size: cover;
         }
     </style>
@@ -23,58 +23,60 @@
             <div class="col-md-3"></div>
             <div class="col-md-6 mt-5 bg-light rounded text-center p-4">
                 <h4 class="text-primary mb-3">CHECK PASSWORD STRENGTH</h4>
-                
-                <input type="password" placeholder="Enter your password here" 
-                    class="form-control mb-3 w-75 mx-auto text-center p-2"
-                    id="passwordField" oninput="checkValue()">
-            
+
+                <input type="password" placeholder="Enter your password here"
+                    class="form-control mb-3 w-75 mx-auto text-center p-2" id="passwordField" oninput="checkValue()">
+
                 <button type="button" onclick="clearField()" class="btn btn-danger w-50">Clear</button>
-            
+
                 <p id="strength" class="mt-3"></p>
             </div>
-            
+
             <div class="col-md-3"></div>
         </div>
     </div>
     <script>
         function checkValue() {
-    let password = document.getElementById("passwordField").value;
-    let UpperCase = false, LowerCase = false, Numbers = false, SpecialChar = false;
+            let password = document.getElementById("passwordField").value;
+            let UpperCase = false, LowerCase = false, Numbers = false, SpecialChar = false;
 
-    // Define special characters
-    let specialChars = "!@#$%^&*()_+[]{}|;:',.<>?/`~";
+            // Define special characters
+            let specialChars = "!@#$%^&*()_+[]{}|;:',.<>?/`~";
 
-    // Loop through each character in the password
-    for (let char of password) {
-        if (char >= 'A' && char <= 'Z') {
-            UpperCase = true;
-        }  
-        else if (char >= 'a' && char <= 'z') {
-            LowerCase = true;
-        } 
-        else if (char >= '0' && char <= '9'){ 
-            Numbers = true;
-        }  
-        else if (specialChars.includes(char)) {
-            SpecialChar = true;
-        } 
-    }
+            // Loop through each character in the password
+            for (let char of password) {
+                if (char >= 'A' && char <= 'Z') {
+                    UpperCase = true;
+                }
+                else if (char >= 'a' && char <= 'z') {
+                    LowerCase = true;
+                }
+                else if (char >= '0' && char <= '9') {
+                    Numbers = true;
+                }
+                else if (specialChars.includes(char)) {
+                    SpecialChar = true;
+                }
+            }
 
-    let strengthText = "Strength: Weak";
-    let strengthColor = "red";
+            let strengthText = "Strength: Weak";
+            let strengthColor = "red";
 
-    if (password.length >= 8 && UpperCase && LowerCase && Numbers && SpecialChar) {
-        strengthText = "Strength: Strong";
-        strengthColor = "green";
-    } else if (password.length >= 6) {
-        strengthText = "Strength: Medium";
-        strengthColor = "orange";
-    }
+            if (password.length >= 8 && UpperCase && LowerCase && Numbers && SpecialChar) {
+                strengthText = "Strength: Strong";
+                strengthColor = "green";
+            } else if (password.length >= 6 && UpperCase && LowerCase && Numbers) {
+                strengthText = "Strength: Medium";
+                strengthColor = "orange";
+            }
+            else if(password.length===0){
+                strengthText=""
+            }
 
-    let strength = document.getElementById("strength");
-    strength.innerHTML = strengthText;
-    strength.style.color = strengthColor;
-}
+            let strength = document.getElementById("strength");
+            strength.innerHTML = strengthText;
+            strength.style.color = strengthColor;
+        }
 
         function clearField() {
             passwordField.value = ""
