@@ -18,7 +18,7 @@
             oninput="checkValue()">
 
         <label for="seriesSelect" class="form-label">Select Series Type:</label>
-        <select id="seriesSelect" class="form-select mb-3" disabled onchange="generateSeries()">
+        <select id="seriesSelect" class="form-select" disabled onchange="generateSeries()">
             <option value="">-- Select a Series --</option>
             <option value="fibonacci">Fibonacci Series</option>
             <option value="prime">Prime Numbers Series</option>
@@ -26,29 +26,50 @@
             <option value="cube">Cube Numbers Series</option>
             <option value="factorial">Factorial Series</option>
         </select>
+        <p id="result"></p>
+        <button id="showCodeBtn" class="btn btn-custom w-100" onclick="showCode()" disabled>Show Code</button>
 
+        <pre id="codeDisplay" class="mt-3 p-3"
+            style="display: none; background: #212121; color: #fff; border-radius: 8px; overflow-x: auto;"></pre>
 
         <button class="btn btn-reset w-100 mt-2" onclick="resetForm()">Reset</button>
-
-        <p id="result"></p>
     </div>
 
     <script>
         function checkValue() {
             var num = inputBox.value.trim();
+            var showCodeBtn = document.getElementById("showCodeBtn");
+            var codeDisplay = document.getElementById("codeDisplay"); // Ensure this exists
+            var result = document.getElementById("result"); // Ensure this exists
+
             result.innerHTML = "";
             seriesSelect.value = "";
+            showCodeBtn.disabled = true; // Disable "Show Code" button initially
 
             if (num === "" || isNaN(num) || num <= 0) {
                 seriesSelect.disabled = true;
+                showCodeBtn.disabled = true; // Ensure "Show Code" stays disabled
+                result.innerHTML = "";
+                result.classList.remove("show");
+                codeDisplay.style.display = "none"; // Hide code block
             } else {
                 seriesSelect.disabled = false;
+                result.classList.remove("show");
+                codeDisplay.style.display = "none"; // Hide code block
             }
         }
+
 
         function generateSeries() {
             var n = parseInt(inputBox.value);
             var seriesType = seriesSelect.value;
+            var showCodeBtn = document.getElementById("showCodeBtn");
+
+            if (seriesType) {
+                showCodeBtn.disabled = false; // Enable "Show Code" button when a series is selected
+            } else {
+                showCodeBtn.disabled = true;
+            }
 
             if (isNaN(n) || n <= 0) {
                 result.innerHTML = "Please enter a valid positive number!";
@@ -153,13 +174,77 @@
             return fact;
         }
 
+        function showCode() {
+            var seriesType = seriesSelect.value;
+            var codeDisplay = document.getElementById("codeDisplay");
+
+            let codeSnippets = {
+                fibonacci: `function fibonacciSeries(n) {
+    let fib = [0, 1];
+    for (let i = 2; i < n; i++) {
+        fib.push(fib[i - 1] + fib[i - 2]);
+    }
+    return fib.slice(0, n);
+}`,
+                prime: `function primeNumbers(n) {
+    let primes = [];
+    let num = 2;
+    while (primes.length < n) {
+        if (isPrime(num)) {
+            primes.push(num);
+        }
+        num++;
+    }
+    return primes;
+}
+
+function isPrime(num) {
+    if (num < 2) return false;
+    for (let i = 2; i <= Math.sqrt(num); i++) {
+        if (num % i === 0) return false;
+    }
+    return true;
+}`,
+                square: `function squareNumbers(n) {
+    let squares = [];
+    for (let i = 1; i <= n; i++) {
+        squares.push(i * i);
+    }
+    return squares;
+}`,
+                cube: `function cubeNumbers(n) {
+    let cubes = [];
+    for (let i = 1; i <= n; i++) {
+        cubes.push(i * i * i);
+    }
+    return cubes;
+}`,
+                factorial: `function factorialSeries(n) {
+    let fact = [1];
+    for (let i = 1; i < n; i++) {
+        fact.push(fact[i - 1] * (i + 1));
+    }
+    return fact;
+}`
+            };
+
+            if (seriesType in codeSnippets) {
+                codeDisplay.innerText = codeSnippets[seriesType];
+                codeDisplay.style.display = "block"; // Show the code block
+            } else {
+                codeDisplay.style.display = "none"; // Hide if no series is selected
+            }
+        }
+
 
         function resetForm() {
             inputBox.value = "";
             seriesSelect.value = "";
             seriesSelect.disabled = true;
+            showCodeBtn.disabled = true; // Disable "Show Code" button on reset
             result.innerHTML = "";
             result.classList.remove("show");
+            codeDisplay.style.display = "none"; // Hide code block
         }
     </script>
 </body>
