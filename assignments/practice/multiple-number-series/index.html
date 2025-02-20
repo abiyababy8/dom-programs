@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Number Series Generator</title>
+    <link rel="shortcut icon" href="./icon.png" type="image/x-icon">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+    <h2 class="mt-5">Number Series Generator</h2>
+
+    <div class="container-box">
+        <input type="number" placeholder="Enter number of terms" class="form-control mb-3" id="inputBox"
+            oninput="checkValue()">
+
+        <label for="seriesSelect" class="form-label">Select Series Type:</label>
+        <select id="seriesSelect" class="form-select mb-3" disabled onchange="generateSeries()">
+            <option value="">-- Select a Series --</option>
+            <option value="fibonacci">Fibonacci Series</option>
+            <option value="prime">Prime Numbers Series</option>
+            <option value="square">Square Numbers Series</option>
+            <option value="cube">Cube Numbers Series</option>
+            <option value="factorial">Factorial Series</option>
+        </select>
+
+
+        <button class="btn btn-reset w-100 mt-2" onclick="resetForm()">Reset</button>
+
+        <p id="result"></p>
+    </div>
+
+    <script>
+        function checkValue() {
+            var num = inputBox.value.trim();
+            result.innerHTML = "";
+            seriesSelect.value = "";
+
+            if (num === "" || isNaN(num) || num <= 0) {
+                seriesSelect.disabled = true;
+            } else {
+                seriesSelect.disabled = false;
+            }
+        }
+
+        function generateSeries() {
+            var n = parseInt(inputBox.value);
+            var seriesType = seriesSelect.value;
+
+            if (isNaN(n) || n <= 0) {
+                result.innerHTML = "Please enter a valid positive number!";
+                result.classList.remove("show");
+                result.style.color = "red";
+                return;
+            }
+
+            let series = [];
+            if (seriesType === "fibonacci") {
+                series = fibonacciSeries(n);
+            } else if (seriesType === "prime") {
+                series = primeNumbers(n);
+            } else if (seriesType === "square") {
+                series = squareNumbers(n);
+            } else if (seriesType === "cube") {
+                series = cubeNumbers(n);
+            } else if (seriesType === "factorial") {
+                series = factorialSeries(n);
+            }
+
+            result.innerHTML = `<strong>Number Series:</strong> ${series.join(", ")}`;
+            result.classList.add("show");
+            result.style.color = "white";
+        }
+
+        function fibonacciSeries(n) {
+            // Start with the first two numbers of the Fibonacci sequence
+            let fib = [0, 1];
+
+            // Continue the sequence until we have 'n' numbers
+            for (let i = 2; i < n; i++) {
+                let nextNumber = fib[i - 1] + fib[i - 2]; // Sum of the last two numbers
+                fib.push(nextNumber); // Add the new number to the array
+            }
+
+            // Return only the first 'n' numbers (in case n is less than 2)
+            return fib.slice(0, n);
+        }
+
+
+        function primeNumbers(n) {
+            let primes = []; // Store prime numbers
+            let num = 2; // Start checking from 2 (the smallest prime number)
+
+            // Keep finding primes until we reach 'n' primes
+            while (primes.length < n) {
+                if (isPrime(num)) {
+                    primes.push(num); // Add the prime number to the list
+                }
+                num++; // Move to the next number to check
+            }
+
+            return primes; // Return the list of prime numbers
+        }
+
+        // Helper function to check if a number is prime
+        function isPrime(num) {
+            if (num < 2) return false; // 0 and 1 are not prime
+
+            // Check divisibility from 2 up to the square root of num
+            for (let i = 2; i <= Math.sqrt(num); i++) {
+                if (num % i === 0) {
+                    return false; // If divisible, it's not a prime number
+                }
+            }
+            return true; // If no divisors were found, it's prime
+        }
+
+
+        function squareNumbers(n) {
+            let squares = [];
+
+            // Loop from 1 to n and store the square of each number
+            for (let i = 1; i <= n; i++) {
+                squares.push(i * i); // Square of 'i'
+            }
+
+            return squares;
+        }
+
+        function cubeNumbers(n) {
+            let cubes = [];
+
+            // Loop from 1 to n and store the cube of each number
+            for (let i = 1; i <= n; i++) {
+                cubes.push(i * i * i); // Cube of 'i'
+            }
+
+            return cubes;
+        }
+
+        function factorialSeries(n) {
+            let fact = [1]; // The first factorial (1! = 1)
+
+            // Loop to calculate factorials from 2! to n!
+            for (let i = 1; i < n; i++) {
+                let nextFactorial = fact[i - 1] * (i + 1); // Multiply previous factorial by the next number
+                fact.push(nextFactorial); // Add the result to the list
+            }
+
+            return fact;
+        }
+
+
+        function resetForm() {
+            inputBox.value = "";
+            seriesSelect.value = "";
+            seriesSelect.disabled = true;
+            result.innerHTML = "";
+            result.classList.remove("show");
+        }
+    </script>
+</body>
+
+</html>
